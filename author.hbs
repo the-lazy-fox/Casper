@@ -47,7 +47,7 @@
         </header>
 
         <div class="post-feed">
-            {{#foreach posts}}
+            {{#foreach posts filter="tag:-script" }}
                 {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
                 {{> "post-card"}}
             {{/foreach}}
