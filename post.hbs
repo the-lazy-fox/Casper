@@ -42,7 +42,17 @@ into the {body} tag of the default.hbs template --}}
                     <h4 class="author-name">{{authors}}</h4>
                     <div class="byline-meta-content">
                         <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date}}</time>
-                        <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>
+                        <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>                        
+                    </div>
+	            <div class="article-tags">
+                    {{#if tags}}
+                        {{#foreach tags}}
+                            <span>
+                                <i class="icon-circle" style="background-color: {{accent_color}};"></i>
+                                <a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a>
+                            </span>
+                        {{/foreach}}
+                    {{/if}}
                     </div>
                 </div>
             </section>
@@ -72,29 +82,48 @@ into the {body} tag of the default.hbs template --}}
         {{content}}
     </section>
 
-    {{!--
-    <section class="article-comments gh-canvas">
-        If you want to embed comments, this is a good place to paste your code!
+    <section class="article-tags gh-canvas">
+        <p>
+        {{#if tags}}
+            Tags: 
+            {{#foreach tags}}
+            <span>
+                <i class="icon-circle" style="background-color: {{accent_color}};"></i>
+                <a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a>
+            </span>
+            {{/foreach}}
+        {{/if}}
+        </p>
     </section>
-    --}}
+    
+    <section class="article-comments gh-canvas">
+    <figure class="kg-card kg-bookmark-card">
+        <a class="kg-bookmark-container" href="https://discord.gg/SffGPvsfWy">
+            <div class="kg-bookmark-content">
+                <div class="kg-bookmark-title">
+                    Looking for help?
+                </div>
+                <div class="kg-bookmark-description">
+                    If you are looking for some help or want a quick chat, please head over to the Discord Community!
+                </div>
+                <div class="kg-bookmark-metadata">
+                    <img class="kg-bookmark-icon" src="https://blog.thelazyfox.xyz/content/images/icons/discord.svg" alt="">
+                    <span class="kg-bookmark-author">
+                        TheLazyFox's Discord
+                    </span>
+                    <span class="kg-bookmark-publisher">
+                        TheLazyFox
+                    </span>
+                </div>
+            </div>
+            <div class="kg-bookmark-thumbnail">
+                <img src="https://blog.thelazyfox.xyz/content/images/themes/discord.png" alt="">
+            </div>
+        </a>
+    </figure>
+    </section>
 
 </article>
-
-{{!-- A signup call to action is displayed here, unless viewed as a logged-in member --}}
-{{#unless @member}}
-<section class="footer-cta">
-    <div class="inner">
-        <h2>Sign up for more like this.</h2>
-        <a class="footer-cta-button" href="#/portal">
-            <div>Enter your email</div>
-            <span>Subscribe</span>
-        </a>
-        {{!-- ^ This looks like a form element, but it's just a link to Portal,
-        making the form validation and submission much simpler. --}}
-    </div>
-</section>
-{{/unless}}
-
 
 {{!-- Read more links, just above the footer --}}
 <aside class="read-more-wrap">
@@ -106,7 +135,7 @@ into the {body} tag of the default.hbs template --}}
         This query gets the latest 3 posts on the site, but adds a filter to
         exclude the post we're currently on from being included. --}}
 
-        {{#get "posts" filter="id:-{{id}}" include="authors" limit="3" as |more_posts|}}
+        {{#get "posts" filter="id:-{{id}}+tag:-script" include="authors" limit="3" as |more_posts|}}
             {{#if more_posts}}
                 {{#foreach more_posts}}
                     {{> "post-card"}}
