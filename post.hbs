@@ -88,19 +88,6 @@ into the {body} tag of the default.hbs template --}}
 
     </header>
 
-    <section class="article-tags gh-canvas">
-        <p>
-            {{#if tags}}
-                Tags: 
-                {{#foreach tags}}
-                    <span>
-                        <i class="icon-circle" style="background-color: {{accent_color}};"></i>
-                        <a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a>
-                    </span>
-                {{/foreach}}
-            {{/if}}
-        </p>
-    </section>
     <section class="gh-content gh-canvas">
         {{content}}
     </section>
