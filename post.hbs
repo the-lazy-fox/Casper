@@ -13,11 +13,6 @@ into the {body} tag of the default.hbs template --}}
     <header class="article-header gh-canvas">
 
         <div class="article-tag post-card-tags">
-            {{#primary_tag}}
-                <span class="post-card-primary-tag">
-                    <a href="{{url}}">{{name}}</a>
-                </span>
-            {{/primary_tag}}
             {{#if featured}}
                 <span class="post-card-featured">{{> "icons/fire"}} Featured</span>
             {{/if}}
@@ -55,16 +50,16 @@ into the {body} tag of the default.hbs template --}}
                     {{/if}}
                 </div>
 
-	               <div class="article-tags">
-                     {{#if tags}}
-                         {{#foreach tags}}
-                             <span>
-                                 <i class="icon-circle" style="background-color: {{accent_color}};"></i>
-                                 <a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a>
-                             </span>
-                         {{/foreach}}
-                      {{/if}}
-                  </div>
+	        <div class="article-tags">
+                    {{#if tags}}
+                        {{#foreach tags}}
+                            <span>
+                                <i class="icon-circle" style="background-color: {{accent_color}};"></i>
+                                <a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a>
+                            </span>
+                        {{/foreach}}
+                     {{/if}}
+                </div>
             </div>
 
         </section>
