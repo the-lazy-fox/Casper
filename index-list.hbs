@@ -20,19 +20,6 @@ into the {body} of the default.hbs template --}}
         {{/if}}
     {{/if}}
 
-    {{#match @custom.header_style "!=" "Hidden"}}
-        <div class="site-header-inner inner">
-            {{#if @site.logo}}
-                <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}">
-            {{else}}
-                <h1 class="site-title">{{@site.title}}</h1>
-            {{/if}}
-            {{#if @site.description}}
-                <p class="site-description">{{@site.description}}</p>
-            {{/if}}
-        </div>
-    {{/match}}
-
 </div>
 
 {{!-- The main content area --}}
