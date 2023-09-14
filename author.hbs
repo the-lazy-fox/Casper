@@ -63,12 +63,10 @@
         </section>
         {{/author}}
 
-        {{#foreach posts}}
+        {{#foreach posts filter="tag:-hash-script"}}
             {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
             {{> "post-card"}}
         {{/foreach}}
-
-    </div>
 
     {{pagination}}
     
